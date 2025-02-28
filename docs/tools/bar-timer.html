@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<!-- ページ設定 -->
+	<link rel="icon" href="parts/favicon.ico"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="parts/appicon.png">
+	<meta name="theme-color" content="#99ff00">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<!-- フォント関連 -->
+	<!-- マテリアルフォント、KosugiMaru -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Righteous&display=swap" rel="stylesheet">
+
+	<!-- Twitter Card-->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@07nagareboshi" />
+	<meta property="og:url" content="https://nagareboshi07.github.io/site/" />
+	<meta property="og:title" content="BarTimer - Nagareboshi Tools" />
+	<meta property="og:description" content="主に生放送での表示を想定したタイマーです。" />
+	<meta property="og:image" content="https://nagareboshi07.github.io/site/tools/parts/twitter-card.jpg" /> 
+
+	<!-- css -->
+	<link rel="stylesheet" href="./css/bar-timer.css" type="text/css">
+
+	<!-- js-->
+	<script src="./js/bar-timer.js"></script>
+
+</head>
+
+<body>
+	<div class="buttons">
+		<button class='start' id="button_1" onclick="click_button_1()">Start</button>
+		<button class='reset' id="button_reset" onclick="click_button_reset()">Reset</button>
+		<button class='setting' id="button_setting" onclick="click_button_setting()">Setting</button>
+		<button class='button_sitetop' onclick='location.href="../index.html"'>Top</button>
+		<button class='button_manual' onclick='location.href="../manuals/bar-timer.html"'>Manual</button>
+	</div>
+
+	<div id='settings' class='settings'>	
+		<div id='genSetting' class="genSetting">
+			<div class="line">
+				<p>時間設定</p>
+				<input type="time" name="time" id="time" step="1" min="00:00:01" max="6:00:00" autocomplete="off" value="00:03:00" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>自動開始</p>
+				<input type="checkbox" name="autostart" id="autostart">
+			</div>
+			<div class="line">
+				<p>リンク</p>
+				<button class='button_get_link' id="button_get_link" onClick="getLinkText()">リンクを取得</button>
+			</div>
+			<div class="line">
+				<input type="text" id="link_text" readonly onClick="this.select()">
+				<button class='button_copy_link' id="button_copy_link" onClick="copyLink()">copy</button>
+			</div>
+			<div class="line">
+				<p>初期化</p>
+				<button class='button_default' id="button_default" onClick="firstAction()">設定を初期化</button>
+			</div>
+		</div>
+
+
+		<div id='colSetting' class="colSetting">
+			<div class="line">
+				<p>向き</p>
+				<input type="radio" name="direction" id="directionH" value="yoko" checked onChange="getSetting()">横
+				<input type="radio" name="direction" id="directionV" value="tate" onChange="getSetting()">縦
+			</div>
+			<div class="line">
+				<p></p>
+				<input type="checkbox" name="reverse" id="reverse" onChange="getSetting()">反転
+			</div>
+			<div class="line">
+				<p>背景</p>
+				<input type="checkbox" name="colBgValid" id="colBgValid" checked  disabled='disabled'>
+				<input type="color" name="colBg" id="colBg" value="#000050" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>色1</p>
+				<input type="checkbox" name="col1Valid" id="col1Valid" checked disabled='disabled'>
+				<input type="color" name="col1" id="col1" value="#00ffaa" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>色2</p>
+				<input type="checkbox" name="col2Valid" id="col2Valid" onChange="getSetting()">
+				<input type="color" name="col2"  id="col2" value="#ffffff" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>色3</p>
+				<input type="checkbox" name="col3Valid" id="col3Valid" onChange="getSetting()">
+				<input type="color" name="col3"  id="col3" value="#ffffff" onChange="getSetting()">
+			</div>
+		</div>
+
+		<div id='colSetting' class="colSetting">
+			<div class="line">
+				<p>色4</p>
+				<input type="checkbox" name="col4Valid" id="col4Valid" onChange="getSetting()">
+				<input type="color" name="col4" id="col4" value="#ffffff" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>色5</p>
+				<input type="checkbox" name="col5Valid" id="col5Valid" onChange="getSetting()">
+				<input type="color" name="col5" id="col5" value="#ffffff" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>色6</p>
+				<input type="checkbox" name="col6Valid" id="col6Valid" onChange="getSetting()">
+				<input type="color" name="col6" id="col6" value="#ffffff" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>色7</p>
+				<input type="checkbox" name="col7Valid" id="col7Valid" onChange="getSetting()">
+				<input type="color" name="col7" id="col7" value="#ffffff" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>色8</p>
+				<input type="checkbox" name="col8Valid" id="col8Valid" onChange="getSetting()">
+				<input type="color" name="col8" id="col8" value="#ffffff" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>色9</p>
+				<input type="checkbox" name="col9Valid" id="col9Valid" onChange="getSetting()">
+				<input type="color" name="col9" id="col9" value="#ffffff" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>色10</p>
+				<input type="checkbox" name="col10Valid" id="col10Valid" onChange="getSetting()">
+				<input type="color" name="col10" id="col10" value="#ffffff" onChange="getSetting()">
+			</div>
+			<div class="line">
+				<p>色11</p>
+				<input type="checkbox" name="col11Valid" id="col11Valid" onChange="getSetting()">
+				<input type="color" name="col11" id="col11" value="#ffffff" onChange="getSetting()">
+			</div>
+		</div>
+	</div>
+</body>
